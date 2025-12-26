@@ -1,0 +1,360 @@
+body {
+  background: linear-gradient(-20deg, #a8dadc 20%, #457b9d 20%, #457b9d 30%, #1d3557 30%, #1d3557 70%, #457b9d 70%, #457b9d 80%, #a8dadc 80%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gift-box-container {
+  width: 200px;
+  height: 200px;
+  perspective: 400px;
+}
+
+.gift-box {
+  --gift-box-color: #111;
+  --gift-box-edge-color: #000;
+  --wrap-color: #fff;
+  --wrap-top-color: #fff;
+  --wrap-ribbon-color: #fff;
+
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  animation: rotation-3d 20s infinite linear;
+}
+
+.gift-box .gift-box__side,
+.gift-box .gift-box__end {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid var(--gift-box-edge-color);
+}
+
+.gift-box .gift-box-lid__side {
+  position: absolute;
+  width: 220px;
+  height: 50px;
+  border: 2px solid var(--gift-box-edge-color);
+}
+
+.gift-box .gift-box-lid__end {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 2px solid var(--gift-box-edge-color);
+}
+
+.gift-box .gift-box__side,
+.gift-box .gift-box-lid__side {
+  background: linear-gradient(to right,
+    var(--gift-box-color) 40%,
+    var(--wrap-color) 40%,
+    var(--wrap-color) 60%,
+    var(--gift-box-color) 60%
+  );
+}
+.gift-box .gift-box__end,
+.gift-box .gift-box-lid__end {
+  background: linear-gradient(to right,
+    transparent 40%,
+    var(--wrap-top-color) 40%,
+    var(--wrap-top-color) 60%,
+    transparent 60%
+  ),
+  linear-gradient(to bottom,
+    var(--gift-box-color) 40%,
+    var(--wrap-color) 40%,
+    var(--wrap-color) 60%,
+    var(--gift-box-color) 60%
+  );
+}
+
+.gift-box .gift-box__side--front { transform: rotateY(0deg) translateZ(100px); }
+.gift-box .gift-box__side--back { transform: rotateY(180deg) translateZ(100px); }
+.gift-box .gift-box__side--left { transform: rotateY(-90deg) translateZ(100px); }
+.gift-box .gift-box__side--right { transform: rotateY(90deg) translateZ(100px); }
+.gift-box .gift-box__side--top { transform: rotateX(90deg) translateZ(100px); }
+.gift-box .gift-box__side--bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+.gift-box .gift-box-lid__side--front { transform: rotateY(0deg) translateZ(110px) translateX(-10px) translateY(-10px); }
+.gift-box .gift-box-lid__side--back { transform: rotateY(180deg) translateZ(110px) translateX(10px) translateY(-10px); }
+.gift-box .gift-box-lid__side--left { transform: rotateY(-90deg) translateZ(120px) translateY(-10px); }
+.gift-box .gift-box-lid__side--right { transform: rotateY(90deg) translateZ(100px) translateY(-10px); }
+.gift-box .gift-box-lid__side--top { transform: rotateX(90deg) translateZ(120px) translateX(-10px) translateY(0); }
+
+.gift-box .ribbon-l {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--wrap-ribbon-color);
+  border-radius: 50% 50% 0 50%;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  transform: rotateX(75deg)
+             rotateY(90deg)
+             translateZ(calc(80px - var(--gift-box-position)))
+             translateX(-85px)
+             translateY(-75px)
+             skewY(30deg);
+}
+
+.gift-box .ribbon-r {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--wrap-ribbon-color);
+  border-radius: 50% 50% 0 50%;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  transform: rotateX(-5deg)
+             rotateY(90deg)
+             translateZ(calc(80px - var(--gift-box-position)))
+             translateX(-30px)
+             translateY(-110px)
+             skewY(30deg);
+}
+
+.ribbon-l-end {
+  position: absolute;
+  width: 40px;
+  height: 110px;
+  background:
+    linear-gradient(45deg, var(--wrap-top-color) 72%, transparent 72%), 
+    linear-gradient(-45deg, var(--wrap-top-color) 72%, transparent 72%);
+  border: 2px solid var(--gift-box-edge-color);
+  border-top: none;
+  border-bottom: none;
+  transform: rotateX(-70deg) translateX(80px) translateY(-80px) translateZ(-60px);
+}
+
+.ribbon-r-end {
+  position: absolute;
+  width: 40px;
+  height: 110px;
+  background:
+    linear-gradient(45deg, var(--wrap-top-color) 72%, transparent 72%), 
+    linear-gradient(-45deg, var(--wrap-top-color) 72%, transparent 72%);
+  border: 2px solid var(--gift-box-edge-color);
+  border-top: none;
+  border-bottom: none;
+  transform: rotateX(80deg) translateX(80px) translateY(-80px) translateZ(60px);
+}
+
+@keyframes rotation-3d {
+  from {
+    transform: translateZ(-100px) rotateY(50deg) rotateX(-5deg) rotateZ(-30deg);
+  }
+  to {
+    transform: translateZ(-100px) rotateY(409deg) rotateX(-5deg) rotateZ(-30deg);
+  }
+}
+
+/* ========================= */
+/* ABRIR A CAIXA AO CLICAR  */
+/* ========================= */
+
+.gift-box {
+  cursor: pointer;
+}
+
+/* Para a rotação automática quando abre */
+.gift-box.open {
+  animation: none;
+}
+
+/* Para a rotação quando abre */
+.gift-box.open {
+  animation: none;
+}
+
+/* Tampa abre */
+.gift-box.open .gift-box-lid__side--top {
+  transform: rotateX(-120deg) translateZ(60px);
+  transform-origin: bottom center;
+  transition: transform 1s ease;
+}
+
+/* Laterais da tampa sobem */
+.gift-box.open .gift-box-lid__side--front,
+.gift-box.open .gift-box-lid__side--back,
+.gift-box.open .gift-box-lid__side--left,
+.gift-box.open .gift-box-lid__side--right {
+  transform: translateY(-80px) translateZ(110px);
+  transition: 1s ease;
+}
+
+/* Caixa some depois */
+.gift-box.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateZ(-800px) scale(0.5);
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+
+.gift-box.open .gift-box-lid__side--back {
+  transform: rotateY(180deg) translateZ(110px) translateX(10px) translateY(-80px);
+  transition: 1s ease;
+}
+
+.gift-box.open .gift-box-lid__side--left {
+  transform: rotateY(-90deg) translateZ(120px) translateY(-80px);
+  transition: 1s ease;
+}
+
+.gift-box.open .gift-box-lid__side--right {
+  transform: rotateY(90deg) translateZ(100px) translateY(-80px);
+  transition: 1s ease;
+}
+
+.gift-box.open .ribbon-l,
+.gift-box.open .ribbon-r,
+.gift-box.open .ribbon-l-end,
+.gift-box.open .ribbon-r-end {
+  transform:
+    translateY(-80px)
+    translateZ(110px);
+  transition: transform 1s ease;
+}
+
+.gift-box .ribbon-l {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 2px solid white;
+  border-radius: 50% 50% 0 50%;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  transform:
+    rotateX(75deg)
+    rotateY(90deg)
+    translateZ(calc(80px - var(--gift-box-position)))
+    translateX(-85px)
+    translateY(-75px)
+    skewY(30deg);
+}
+
+.gift-box .ribbon-r {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 2px solid white;
+  border-radius: 50% 50% 0 50%;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  transform:
+    rotateX(75deg)
+    rotateY(-90deg) /* espelha */
+    translateZ(calc(80px - var(--gift-box-position)))
+    translateX(85px) /* joga pra direita */
+    translateY(-75px)
+    skewY(-30deg);
+}
+
+/* ===================== */
+/* PANFLETO + TRANSIÇÃO */
+/* ===================== */
+
+.flyer-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%) translateZ(-600px);
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+  pointer-events: none;
+}
+
+.flyer-container.show {
+  transform: translate(-50%, -50%) translateZ(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.flyer {
+  width: 250px;
+  height: 300px;
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.fold {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s ease;
+}
+
+.flyer-front, .flyer-back, .flyer-inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flyer-front img,
+.flyer-back img,
+.flyer-inside img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flyer-back {
+  transform: rotateY(180deg);
+}
+
+.fold-inner {
+  transform: rotateY(-180deg);
+  pointer-events: none;
+}
+
+.flyer.open .fold-main {
+  transform: rotateY(-180deg);
+}
+
+.flyer.open .fold-inner {
+  transform: rotateY(0deg);
+  pointer-events: auto;
+}
+
+
+.flyer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.flyer.open {
+  transform: translateX(125px);
+  transition: transform 1s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
