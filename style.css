@@ -341,40 +341,6 @@ body {
   transition: transform 1s ease;
 }
 
-/* =================================== */
-/* CAIXA 3D FIX NO MOBILE (1) */
-/* =================================== */
-
-@media (max-width: 768px) {
-
-  .gift-box-container {
-    position: fixed;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    perspective: none !important;
-  }
-
-  .gift-box {
-    transform-style: flat !important;
-    transform: none !important;
-    width: 150px !important;
-    height: 150px !important;
-  }
-
-  .gift-box .gift-box__side,
-  .gift-box .gift-box-lid__side,
-  .gift-box .gift-box__end,
-  .gift-box .gift-box-lid__end {
-    transform: none !important;
-    width: 150px !important;
-    height: 150px !important;
-  }
-
-  .gift-box-lid__side--top {
-    top: -40px !important;
-  }
-}
 
 
 
