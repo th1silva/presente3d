@@ -341,83 +341,54 @@ body {
   transition: transform 1s ease;
 }
 
-@media (max-width: 768px) {
-
-  body {
-    flex-direction: column;
-    padding: 20px;
-    overflow: hidden;
-  }
-
-  .gift-box-container {
-    width: 140px;
-    height: 140px;
-    perspective: 600px;
-  }
-
-  .gift-box {
-    width: 140px;
-    height: 140px;
-  }
-
-  .gift-box .gift-box__side,
-  .gift-box .gift-box__end {
-    width: 140px;
-    height: 140px;
-  }
-
-  .flyer-container {
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-
-  .flyer-3d {
-    width: 320px;
-    height: 200px;
-  }
-
-  .flyer-left,
-  .flyer-right {
-    width: 160px;
-    height: 200px;
-  }
-
-  .flyer-left img,
-  .flyer-right img {
-    object-fit: contain;
-  }
-
-}
 /* ========================= */
-/* FIX DA CAIXA NO CELULAR  */
+/* FIX TOTAL DA CAIXA NO CELULAR */
 /* ========================= */
 
 @media (max-width: 768px) {
 
   .gift-box-container {
     position: fixed;
-    top: 40%;
+    top: 38%;
     left: 50%;
     transform: translate(-50%, -50%);
     perspective: none !important;
   }
 
   .gift-box {
+    transform-style: flat !important;
     transform: none !important;
-    scale: 0.7;
+    width: 140px;
+    height: 140px;
+    scale: 1;
+  }
+
+  .gift-box * {
+    transform: none !important;
+  }
+
+  /* tampa */
+  .gift-box-lid__side,
+  .gift-box-lid__end {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 
   .gift-box.open {
-    transform: none !important;
+    opacity: 0.9;
   }
 
   .gift-box.back {
-    transform: none !important;
+    opacity: 0.5;
   }
 
   .gift-box.hide {
     display: none;
   }
 }
+
+
 
 
 
