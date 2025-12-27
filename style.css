@@ -1,5 +1,6 @@
 body {
-  background: linear-gradient(-20deg, #a8dadc 20%, #457b9d 20%, #457b9d 30%, #1d3557 30%, #1d3557 70%, #457b9d 70%, #457b9d 80%, #a8dadc 80%);
+ background: linear-gradient(-20deg, #f7baff 20%, #cf93f7 20%, #816cf7 30%, #f19bf1 30%, #491d57 70%, #457b9d 70%, #e4bff3 80%, #efc9f8 80%);
+  min-height: 100vh;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -340,6 +341,7 @@ body {
   transform: translateX(125px);
   transition: transform 1s ease;
 }
+
 
 
 
