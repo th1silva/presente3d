@@ -387,6 +387,38 @@ body {
   }
 
 }
+/* ========================= */
+/* FIX DA CAIXA NO CELULAR  */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .gift-box-container {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: none !important;
+  }
+
+  .gift-box {
+    transform: none !important;
+    scale: 0.7;
+  }
+
+  .gift-box.open {
+    transform: none !important;
+  }
+
+  .gift-box.back {
+    transform: none !important;
+  }
+
+  .gift-box.hide {
+    display: none;
+  }
+}
+
 
 
 
