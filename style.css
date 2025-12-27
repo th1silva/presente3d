@@ -341,6 +341,54 @@ body {
   transition: transform 1s ease;
 }
 
+@media (max-width: 768px) {
+
+  body {
+    flex-direction: column;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .gift-box-container {
+    width: 140px;
+    height: 140px;
+    perspective: 600px;
+  }
+
+  .gift-box {
+    width: 140px;
+    height: 140px;
+  }
+
+  .gift-box .gift-box__side,
+  .gift-box .gift-box__end {
+    width: 140px;
+    height: 140px;
+  }
+
+  .flyer-container {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  .flyer-3d {
+    width: 320px;
+    height: 200px;
+  }
+
+  .flyer-left,
+  .flyer-right {
+    width: 160px;
+    height: 200px;
+  }
+
+  .flyer-left img,
+  .flyer-right img {
+    object-fit: contain;
+  }
+
+}
+
+
 
 
 
