@@ -25,27 +25,6 @@ flyer.addEventListener("click", () => {
   flyer.classList.toggle("open");
 });
 
-let isTouching = false;
-let lastTouchX = 0;
-
-flyer3d.addEventListener("touchstart", e => {
-  isTouching = true;
-  lastTouchX = e.touches[0].clientX;
-});
-
-flyer3d.addEventListener("touchend", () => {
-  isTouching = false;
-});
-
-flyer3d.addEventListener("touchmove", e => {
-  if (!isTouching) return;
-  const x = e.touches[0].clientX;
-  const delta = x - lastTouchX;
-  rotationY += delta * 0.4;
-  flyer3d.style.transform = `rotateY(${rotationY}deg)`;
-  lastTouchX = x;
-});
-
 
 
 
